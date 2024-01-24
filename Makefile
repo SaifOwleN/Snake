@@ -1,3 +1,3 @@
 run:
-	g++ xdd.cpp -lncurses
+	g++ Game.cpp -lncurses
 	./a.out
