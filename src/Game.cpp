@@ -1,3 +1,4 @@
+#include "../include/Snake.hpp"
 #include <cstdlib>
 #include <iostream>
 #include <ncurses.h>
@@ -15,22 +16,6 @@ int getRandomNumber() {
   return distribution(gen);
 }
 
-class Snake {
-public:
-  void eat();
-  void move(char);
-  void moveLine();
-  void lose();
-  void spawn();
-  void point();
-  void print(WINDOW *&);
-  std::pair<int, int> getPosition(int);
-  std::vector<std::vector<int>> blocks;
-
-private:
-  std::vector<std::pair<int, int>> position;
-  std::pair<int, int> scorePosition;
-};
 std::pair<int, int> Snake::getPosition(int i) { return position[i]; }
 
 void Snake::print(WINDOW *&window) {
@@ -136,16 +121,6 @@ void Snake::move(char dir) {
   moveLine();
 }
 
-class Manager {
-public:
-  void initialize();
-  void run();
-  Manager(Snake);
-
-private:
-  Snake snakePtr;
-};
-
 void Manager::initialize() { snakePtr.spawn(); }
 
 Manager::Manager(Snake xdd2) : snakePtr(xdd2){};
@@ -181,11 +156,4 @@ void Manager::run() {
     snakePtr.print(window);
     wrefresh(window);
   }
-}
-
-int main() {
-  Snake snake;
-  Manager game(snake);
-  game.run();
-  return 0;
 }
